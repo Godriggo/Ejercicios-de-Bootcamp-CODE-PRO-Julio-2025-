@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Conocé los servicios de diseño web que ofrece AldeV: desde diseño y mantenimiento hasta hosting confiable.">
+    <meta name="keywords" content="diseño web, mantenimiento web, alojamiento web, AldeV diseño">
+    <meta name="author" content="AldeV">
+    <title>AldeV Websign | Servicios</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" href="/boot_practice/Dia 6 Taller HTML/challenge/img/icon.png" />
+  </head>
+
+  <body class="bg-white dark:bg-slate-900 text-gray-900 dark:text-gray-100">
+
+    <!-- Header -->
+    <header class="mx-auto flex max-w-full bg-indigo-800 text-white py-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+      <div class="block max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div id="branding">
+          <h1 class="text-3xl font-bold text-yellow-400 mb-2 md:mb-0">
+            <span class="text-white">AldeV</span> Diseño Web
+          </h1>
+        </div>
+        <nav>
+          <ul class="flex gap-6 text-sm font-medium">
+            <li><a href="index.html" class="hover:text-yellow-300 transition">Home</a></li>
+            <li><a href="about.html" class="hover:text-yellow-300 transition">About</a></li>
+            <li class="current hover:text-yellow-300 transition"><a href="index.html">Services</li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Newsletter -->
+    <section id="newsletter" class="bg-gray-900 py-12">
+      <div class="max-w-4xl mx-auto text-center px-6">
+        <h1 class="text-2xl md:text-4xl font-bold text-white mb-6">Recibí nuestras novedades</h1>
+        <form class="flex flex-col md:flex-row justify-center items-center gap-4">
+          <input type="email" placeholder="Ingresá tu email..." required class="px-4 py-2 rounded-md text-gray-900 w-full md:w-1/2" />
+          <button type="submit" class="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold px-6 py-2 rounded-md transition">Suscribirme</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="main" class="py-16">
+      <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Artículo principal -->
+        <article id="main-col" class="md:col-span-2">
+          <h1 class="text-3xl font-extrabold text-indigo-800 dark:text-yellow-400 mb-6">Nuestros Servicios</h1>
+          <ul class="space-y-10">
+            <li>
+              <h3 class="text-xl font-semibold text-indigo-700 dark:text-yellow-300 mb-2">Diseño de Páginas Web</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Creamos sitios web a medida, modernos y 100% responsivos. Usamos tecnología actual y un enfoque estratégico para asegurar que tu marca impacte desde el primer clic.
+              </p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Precio: USD 1.000 – 3.000 (según alcance)</p>
+            </li>
+
+            <li>
+              <h3 class="text-xl font-semibold text-indigo-700 dark:text-yellow-300 mb-2">Mantenimiento Web</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Nos encargamos de que su sitio funcione siempre al 100%: actualizaciones de seguridad, mejoras de velocidad, respaldo de contenido y ajustes técnicos constantes.
+              </p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Precio: USD 250 por mes</p>
+            </li>
+
+            <li>
+              <h3 class="text-xl font-semibold text-indigo-700 dark:text-yellow-300 mb-2">Alojamiento Web (Hosting)</h3>
+              <p class="text-gray-700 dark:text-gray-300">
+                Ofrecemos hosting rápido, seguro y escalable para garantizar que tu sitio esté siempre disponible, con soporte técnico personalizado.
+              </p>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Precio: USD 25 por mes</p>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Formulario lateral -->
+        <aside id="sidebar" class="bg-gray-100 dark:bg-gray-800 p-6 rounded-2xl shadow-md">
+          <h3 class="text-xl font-semibold text-indigo-800 dark:text-yellow-400 mb-4">Solicite su presupuesto</h3>
+          <form class="space-y-4">
+            <div>
+              <label class="block mb-1 font-medium">Nombre</label>
+              <input type="text" placeholder="Tu nombre" class="w-full px-3 py-2 rounded-md text-gray-900" />
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Correo electrónico</label>
+              <input type="email" placeholder="tucorreo@ejemplo.com" class="w-full px-3 py-2 rounded-md text-gray-900" />
+            </div>
+            <div>
+              <label class="block mb-1 font-medium">Mensaje</label>
+              <textarea placeholder="Contanos tu idea..." class="w-full px-3 py-2 rounded-md text-gray-900"></textarea>
+            </div>
+            <button type="submit" class="bg-yellow-400 hover:bg-yellow-300 text-black font-semibold px-6 py-2 rounded-md transition">Enviar</button>
+          </form>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p class="bg-gray-800 text-gray-400 text-center text-xs py-4">
+        AldeV Design, Copyright &copy; 2025
+      </p>
+    </footer>
+
+  </body>
+</html>
