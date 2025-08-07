@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRUD - Tareas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+<header class="bg-indigo-800 text-white py-6 shadow-lg">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
+    <h1 class="text-3xl font-bold mb-4 md:mb-0">Administrador de Tareas</h1>
+    <nav>
+      <ul class="flex gap-6 text-sm md:text-base">
+        <li><a href="#" class="hover:underline">INICIO</a></li>
+        <li><a href="#agregar" class="hover:underline">AGREGAR</a></li>
+        <li><a href="#" class="hover:underline">TAREAS</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<div class="flex justify-center mt-6 mb-16">
+  <img class="w-4/5 rounded shadow-md" src="/crud-.png" alt="imagen crud" />
+</div>
+
+
+<section id="agregar" class="max-w-3xl mx-auto bg-white p-6 mt-8 rounded shadow">
+  <h2 class="text-xl font-semibold mb-4">Gestión de Tareas</h2>
+
+  <form method="POST" action="/tarea" class="space-y-4">
+    {% if tarea_editando %}
+      <input type="hidden" name="id" value="{{ tarea_editando.id }}">
+    {% endif %} 
+
+
+    <div>
+      <label for="titulo" class="block font-medium">Título:</label>
+      <input type="text" id="titulo" required name="titulo"
+        class="w-full border border-gray-300 rounded px-3 py-2" value="{{ tarea_editando.titulo if tarea_editando else ''}}"/>
+    </div>
+
+
+    <div>
+      <label for="descripcion" class="block font-medium">Descripción:</label>
+      <textarea id="descripcion" name="descripcion"
+        class="w-full border border-gray-300 rounded px-3 py-2">{{ tarea_editando.descripcion if tarea_editando else '' }}</textarea>
+    </div>
+
+
+    <div>
+      <label for="prioridad" class="block font-medium">Prioridad:</label>
+      <select id="prioridad" name="prioridad" class="w-full border border-gray-300 rounded px-3 py-2">
+        <option value="">Seleccionar</option>
+        <option value="alta" {% if tarea_editando and tarea_editando.prioridad == 'alta' %}selected{% endif %} >Alta</option>
+        <option value="media" {% if tarea_editando and tarea_editando.prioridad == 'media' %}selected{% endif %}>Media</option>
+        <option value="baja" {% if tarea_editando and tarea_editando.prioridad == 'baja'%}selected{% endif %}>Baja</option>
+      </select>
+    </div>
+
+    <div class="flex gap-4">
+      <div class="w-1/2">
+        <label for="fecha-inicio" class="block font-medium">Inicio:</label>
+        <input type="date" id="fecha-inicio" name="fecha_inicio"
+          class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+      <div class="w-1/2">
+        <label for="fecha-limite" class="block font-medium">Límite:</label>
+        <input type="date" id="fecha-limite" name="fecha_fin"
+          class="w-full border border-gray-300 rounded px-3 py-2" />
+      </div>
+    </div>
+
+    <div>
+      <label for="estado" class="block font-medium">Estado:</label>
+      <select id="estado" name="estado" class="w-full border border-gray-300 rounded px-3 py-2">
+        <option value="">Seleccionar</option>
+        <option value="pendiente" >Pendiente</option>
+        <option value="en_proceso" >En proceso</option>
+        <option value="completada" >Completada</option>
+      </select>
+    </div>
+
+
+    <div class="flex gap-4">
+      {% if tarea_editando %}
+        <button type="submit" name="accion" value="actualizar"
+        class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Actualizar</button>
+        <a href="/" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Cancelar</a>
+      {% else %} 
+        <button type="submit" name="accion" value="agregar" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Agregar</button>
+      {% endif %}
+    </div>
+  </form>
+</section>
+
+<section class="max-w-3xl mx-auto mt-8 p-6 bg-white rounded shadow">
+  <h2 class="text-xl font-semibold mb-4">Lista de tareas</h2>
+  <div class="space-y-4">
+    {% for tarea in tareas %}
+    
+      <div class="border border-gray-200 rounded p-4 bg-gray-50">
+        <div class="flex justify-between mb-2">
+          <h3 class="text-lg font-semibold text-indigo-700">{{ tarea.titulo }}</h3>
+          <div class="flex gap-2">
+            <form method="POST" action="/tarea" class="inline">
+              <input type="hidden" name="id" value="{{ tarea.id }}">
+              <button type="submit" name="accion" value="editar"
+                class="bg-blue-500 text-white px-3 py-1 rounded text-sm hover:bg-blue-600">Editar</button>
+            </form>
+            <form method="POST" action="/tarea" class="inline">
+              <input type="hidden" name="id" value="{{ tarea.id }}">
+              <button type="submit" name="accion" value="eliminar"
+                onclick="return confirm('¿Eliminar esta tarea?')"
+                class="bg-red-500 text-white px-3 py-1 rounded text-sm hover:bg-red-600">Eliminar</button>
+            </form>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600">
+          <p><strong>Descripción:</strong> {{ tarea.descripcion or 'Sin descripcion' }} </p>
+          <p><strong>Prioridad:</strong> {{ tarea.prioridad or 'Sin prioridad'}} </p>
+          <p><strong>Inicio:</strong> {{ tarea.fecha_inicio or 'Sin fecha'}} </p>
+          <p><strong>Límite:</strong> {{ tarea.fecha_fin or 'Sin fecha' }} </p>
+          <p><strong>Estado:</strong> {{ tarea.estado or 'Sin estado' }} </p>
+        </div>
+      </div>
+    {% else %}
+
+      <p class="text-gray-500">No hay tareas cargadas.</p>
+    {% endfor %}
+
+  </div>
+</section>
+
+
+<footer class="bg-indigo-900 text-white mt-10 py-6 text-center">
+  <p>© 2025 Taller CRUD</p>
+</footer>
+
+</body>
+</html>
